@@ -4,6 +4,39 @@ let winCount = 0;
 let tieCount = 0;
 let loseCount = 0;
 
+const container = document.querySelector('#container');
+
+
+const ps = document.createElement('div');
+ps.classList.add('ps');
+ps.style.color = 'red';                                      
+ps.textContent = 'PLAYER SCORE ' + winCount;
+ps.style.cssText = 'color: red;';
+container.appendChild(ps);
+
+const cs = document.createElement('div');
+cs.classList.add('cs');
+cs.style.color = 'red';                                      
+cs.textContent = 'COMPUTER SCORE ' + loseCount ;
+cs.style.cssText = 'color: red;';
+container.appendChild(cs);
+
+const tie = document.createElement('div');
+tie.classList.add('tie');
+tie.style.color = 'red';                                      
+tie.textContent = 'TIES ' + tieCount ;
+tie.style.cssText = 'color: red;';
+container.appendChild(tie);
+
+const whowon = document.createElement('div');
+whowon.classList.add('whowon');
+whowon.style.color = 'red';                                      
+whowon.textContent = 'who won?';
+whowon.style.cssText = 'color: red;';
+container.appendChild(whowon);
+
+
+
 function getComputerChoice(){
     let puterWeapon = ["rock","paper","scissors"];
     let randChoice = Math.floor(Math.random()*puterWeapon.length);
@@ -11,6 +44,7 @@ function getComputerChoice(){
 }
 
 function playRound(playerChoice, computerChoice){
+    
     if (playerChoice == "rock"){
         switch(computerChoice){
             case "rock":
@@ -52,30 +86,56 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
-function getPlayerChoice(){
-    let playerChoice = prompt("rock, paper, or scissors?");
-    return playerChoice
-}
+// function getPlayerChoice(){
+//     let playerChoice = prompt("rock, paper, or scissors?");
+//     return playerChoice
+// }
     
-function game(){
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getPlayerChoice(),getComputerChoice()))      
-     }
-     declareWinner()
+function game(){  
+    // playRound(getPlayerChoice(),getComputerChoice())) 
+
+    // declareWinner()
     }
 
 function declareWinner(){
-    if (winCount > loseCount){
-        console.log("player wins!");      
+    if (winCount > 5){
+        whowon.textContent = 'playerwon';
+        // whowon.classList.remove('whowon');
+        // playerwon.classList.add('playerwon');
+        return;    
     }
-    else if (winCount == loseCount){
-        console.log("it's a tie!");      
+         
+    else if (loseCount > 5){
+        whowon.textContent = 'computerwon';
+        // whowon.classList.remove('whowon');
+        // computerwon.classList.add('computerwon');
+        return; 
     }
-    else if (winCount < loseCount){
-        console.log("player loses!");
-    }
-
+    
+    ps.textContent = 'PLAYER SCORE ' + winCount;
+    cs.textContent = 'COMPUTER SCORE ' + loseCount;
+    tie.textContent = 'TIES ' + tieCount ;
+    return;
+    // game();
 }
 
-game()
+// game()
+const rockbutton = document.querySelector("button[data-key='rock']");
+const paperbutton = document.querySelector("button[data-key='paper']");
+const scissorsbutton = document.querySelector("button[data-key='scissors']");
+rockbutton.addEventListener("click", () => myFunction("rock"));
+paperbutton.addEventListener("click",() => myFunction("paper"));
+scissorsbutton.addEventListener("click", () => myFunction("scissors"));
+
+// const btnList = document.querySelectorAll('button');
+// for (let i = 0; i < btnList.length; i++) {
+//     btnList[i].addEventListener("click", myFunction);
+// }
+
+function myFunction(button) {
+    playRound(button,getComputerChoice());
+    
+    console.log(button)
+    declareWinner();
+  }
 
