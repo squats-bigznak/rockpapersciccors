@@ -6,7 +6,6 @@ let loseCount = 0;
 
 const container = document.querySelector('#container');
 
-
 const ps = document.createElement('div');
 ps.classList.add('ps');
 ps.style.color = 'red';                                      
@@ -34,7 +33,6 @@ whowon.style.color = 'red';
 whowon.textContent = 'who won?';
 whowon.style.cssText = 'color: red;';
 container.appendChild(whowon);
-
 
 
 function getComputerChoice(){
@@ -86,29 +84,15 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
-// function getPlayerChoice(){
-//     let playerChoice = prompt("rock, paper, or scissors?");
-//     return playerChoice
-// }
-    
-function game(){  
-    // playRound(getPlayerChoice(),getComputerChoice())) 
-
-    // declareWinner()
-    }
 
 function declareWinner(){
     if (winCount > 5){
-        whowon.textContent = 'playerwon';
-        // whowon.classList.remove('whowon');
-        // playerwon.classList.add('playerwon');
+        whowon.textContent = 'playerwon';       
         return;    
     }
          
     else if (loseCount > 5){
-        whowon.textContent = 'computerwon';
-        // whowon.classList.remove('whowon');
-        // computerwon.classList.add('computerwon');
+        whowon.textContent = 'computerwon';     
         return; 
     }
     
@@ -116,10 +100,9 @@ function declareWinner(){
     cs.textContent = 'COMPUTER SCORE ' + loseCount;
     tie.textContent = 'TIES ' + tieCount ;
     return;
-    // game();
 }
 
-// game()
+
 const rockbutton = document.querySelector("button[data-key='rock']");
 const paperbutton = document.querySelector("button[data-key='paper']");
 const scissorsbutton = document.querySelector("button[data-key='scissors']");
@@ -127,14 +110,9 @@ rockbutton.addEventListener("click", () => myFunction("rock"));
 paperbutton.addEventListener("click",() => myFunction("paper"));
 scissorsbutton.addEventListener("click", () => myFunction("scissors"));
 
-// const btnList = document.querySelectorAll('button');
-// for (let i = 0; i < btnList.length; i++) {
-//     btnList[i].addEventListener("click", myFunction);
-// }
 
 function myFunction(button) {
-    playRound(button,getComputerChoice());
-    
+    playRound(button,getComputerChoice()); 
     console.log(button)
     declareWinner();
   }
